@@ -21,13 +21,12 @@ public class ChatSaveRequestDto {
      * 각 변수를 저장한 entity를 return
      */
     public Chat toEntity() {
-        Chat chat = Chat.builder()
+        return Chat.builder()
                 .host(host)
                 .start(start)
                 .dest(dest)
                 .time(time)
                 .num_of_people(num_of_people)
                 .build();
-        return chat;
     }
 }
