@@ -34,10 +34,8 @@ public class Chat extends BaseTimeEntity {
         this.num_of_people = num_of_people;
     }
 
-//    public void update(String host, String start, String dest) {
-//        this.host = host;
-//        this.start = start;
-//        this.dest = dest;
-//    }
+    public void update() {
+        this.num_of_people++;
+    }
 
 }

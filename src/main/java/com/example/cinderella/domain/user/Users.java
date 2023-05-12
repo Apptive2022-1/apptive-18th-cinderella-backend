@@ -25,8 +25,11 @@ public class Users extends BaseTimeEntity {
     @Column(nullable = false)
     private Role role;
 
+    @Column
+    private Long chatid;
+
     @Builder
-    public Users(String name, String email, Role role, String title) {
+    public Users(String name, String email, Role role) {
         this.name = name;
         this.email = email;
         this.role = role;
@@ -34,7 +37,11 @@ public class Users extends BaseTimeEntity {
 
     public Users update(String name) {
         this.name = name;
+        return this;
+    }
 
+    public Users updateChatid(Long chatid) {
+        this.chatid = chatid;
         return this;
     }
 
