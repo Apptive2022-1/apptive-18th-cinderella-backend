@@ -26,7 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login")
                 .and()
                 .oauth2Login()
-                .defaultSuccessUrl("/main", true)
+                .defaultSuccessUrl("/chatroom/1", true)
+                .failureUrl("/chat/test")
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
     }

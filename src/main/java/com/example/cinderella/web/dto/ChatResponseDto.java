@@ -5,6 +5,8 @@ import lombok.Getter;
 
 @Getter
 public class ChatResponseDto {
+
+    private Long id;
     private String host;
     private String start;
     private String dest;
@@ -12,6 +14,7 @@ public class ChatResponseDto {
     private int num_of_people;
 
     public ChatResponseDto(Chat entity) {
+        this.id = entity.getId();
         this.host = entity.getHost();
         this.start = entity.getStart();
         this.dest = entity.getDest();
