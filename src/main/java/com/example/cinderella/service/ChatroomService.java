@@ -36,7 +36,7 @@ public class ChatroomService {
 
     @Transactional
     public void updateNumofpeople(Long chatid) {
-        Chat chat = chatRepository.findByid(chatid)
+        Chat chat = chatRepository.findById(chatid)
                 .orElseThrow(() -> new IllegalArgumentException("해당 id의 정보가 없습니다. chatid=" + chatid));
         chat.update();
     }
