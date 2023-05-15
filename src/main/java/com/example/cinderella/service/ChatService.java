@@ -18,17 +18,19 @@ public class ChatService {
 
     @Transactional(readOnly = true)
     public List<ChatResponseDto> findAllByStart(String start) {
-        ChatSaveRequestDto requestDto = new ChatSaveRequestDto("천주희", "test", "test1", 500, 2);
-        chatRepository.save(requestDto.toEntity());
-        requestDto = new ChatSaveRequestDto("홍길동", "test", "test2", 400, 3);
-        chatRepository.save(requestDto.toEntity());
-        requestDto = new ChatSaveRequestDto("김철수", "test", "test3", 550, 1);
-        chatRepository.save(requestDto.toEntity());
-
         List<Chat> entity = chatRepository.findAllByStart(start);
         return entity.stream()
                 .map(ChatResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * 방 생성 : host,start,dest,time을 넘겨받아 entity로 바꿔서 저장
+     */
+    @Transactional
+    public void saveChat(String host, String start, String dest, int time){
+        ChatSaveRequestDto saveDto = new ChatSaveRequestDto(host, start, dest, time);
+        chatRepository.save(saveDto.toEntity());
     }
 
 }
