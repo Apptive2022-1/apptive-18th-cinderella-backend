@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface ChatRepository extends JpaRepository<Chat, Long> {
     List<Chat> findAllByStart(String start);
-    Optional<Chat> findByChatid(Long chatid);
+    Optional<Chat> findByid(Long id);
 }
