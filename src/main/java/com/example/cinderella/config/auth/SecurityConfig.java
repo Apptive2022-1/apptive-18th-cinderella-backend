@@ -20,13 +20,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/login", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
                 .antMatchers("/main").hasRole(Role.USER.name())
+                .antMatchers("/chatroom/1").permitAll() //로그인 하지 않은 사용자도 접근 가능
                 .anyRequest().permitAll()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login")
                 .and()
                 .oauth2Login()
-                .defaultSuccessUrl("/success", true)
+                .defaultSuccessUrl("/chatroom/1", true)
                 .failureUrl("/fail")
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
