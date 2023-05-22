@@ -2,7 +2,9 @@ package com.example.cinderella.web.dto;
 
 import com.example.cinderella.domain.chat.Chat;
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 public class ChatSaveRequestDto {
     private String host;
     private String start;

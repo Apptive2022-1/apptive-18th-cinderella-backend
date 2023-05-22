@@ -28,9 +28,8 @@ public class ChatService {
      * 방 생성 : host,start,dest,time을 넘겨받아 entity로 바꿔서 저장
      */
     @Transactional
-    public void saveChat(String host, String start, String dest, int time){
-        ChatSaveRequestDto saveDto = new ChatSaveRequestDto(host, start, dest, time);
-        chatRepository.save(saveDto.toEntity());
+    public void saveChat(ChatSaveRequestDto requestDto){
+        chatRepository.save(requestDto.toEntity());
     }
 
 }
