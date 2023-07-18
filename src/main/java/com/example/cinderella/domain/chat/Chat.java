@@ -29,20 +29,27 @@ public class Chat extends BaseTimeEntity {
     private int num_of_people;
     @Column
     private String calcTime;
+    @Column
+    private String openChatLink;
 
     @Builder
-    public Chat(String host, String start, List dest, int time, int num_of_people, String calcTime) {
+    public Chat(String host, String start, List dest, int time, int num_of_people, String calcTime, String openChatLink) {
         this.host = host;
         this.start = start;
         this.dest = dest;
         this.time = time;
         this.num_of_people = num_of_people;
         this.calcTime = calcTime;
+        this.openChatLink = openChatLink;
     }
 
     public void setStartAndTime(String changedStart ,String calcTime) {
         this.start = changedStart;
         this.calcTime = calcTime;
+    }
+
+    public void setOpenChatLink(String openChatLink){
+        this.openChatLink = openChatLink;
     }
 
     public void update() {

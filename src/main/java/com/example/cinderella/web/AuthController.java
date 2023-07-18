@@ -65,12 +65,4 @@ public class AuthController {
         String email = oAuth2User.getAttribute("email");
         chatService.signUp(email, signUpRequestDto);
     }
-//    @GetMapping("/signup")
-//    public void signUp(@RequestParam String name,
-//                       @RequestParam Gender gender,
-//                       Authentication authentication) {
-//        OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-//        String email = oAuth2User.getAttribute("email");
-//        chatService.upuup(email, name, gender);
-//    }
 }
