@@ -20,7 +20,9 @@ public class Chat extends BaseTimeEntity {
     @Column(nullable = false)
     private String start;
     @Column(nullable = false)
-    private String dest;
+    @ElementCollection
+//    private String dest;
+    private List<String> dest;
     @Column(nullable = false)
     private int time;
     @Column(nullable = false)
@@ -29,12 +31,13 @@ public class Chat extends BaseTimeEntity {
     private String calcTime;
 
     @Builder
-    public Chat(String host, String start, String dest, int time, int num_of_people) {
+    public Chat(String host, String start, List dest, int time, int num_of_people, String calcTime) {
         this.host = host;
         this.start = start;
         this.dest = dest;
         this.time = time;
         this.num_of_people = num_of_people;
+        this.calcTime = calcTime;
     }
 
     public void setStartAndTime(String changedStart ,String calcTime) {
@@ -49,8 +52,8 @@ public class Chat extends BaseTimeEntity {
     /**
      * dest추가기능 : 업데이트 예정
      */
-//    public void updateDest(String destination) {
-//        this.dest.add(destination);
-//    }
+    public void updateDest(String destination) {
+        this.dest.add(destination);
+    }
 
 }

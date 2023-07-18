@@ -9,10 +9,12 @@ public class UsersResponseDto {
     private Long id;
     private String name;
     private Long chatid;
+    private String dest;
 
     public UsersResponseDto(Users entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.chatid = entity.getChatid();
+        this.dest = entity.getDest();
     }
 }

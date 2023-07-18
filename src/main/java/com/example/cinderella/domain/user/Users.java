@@ -32,12 +32,16 @@ public class Users extends BaseTimeEntity {
     @Column(nullable = true)
     private Gender gender;
 
+    @Column
+    private String dest;
+
     @Builder
-    public Users(String name, String email, Role role, Gender gender) {
+    public Users(String name, String email, Role role, Gender gender, String dest) {
         this.name = name;
         this.email = email;
         this.role = role;
         this.gender = gender;
+        this.dest = dest;
     }
 
     public Users update(String name) {
@@ -49,6 +53,11 @@ public class Users extends BaseTimeEntity {
         this.chatid = chatid;
         return this;
     }
+
+    public void updateDest(String dest) {
+        this.dest = dest;
+    }
+
 
     public String getRoleKey() {
         return this.role.getKey();

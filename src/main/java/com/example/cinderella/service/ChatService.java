@@ -60,6 +60,7 @@ public class ChatService {
                 .collect(Collectors.toList());
     }
 
+
     /**
      * 방 생성 : host,start,dest,time을 넘겨받아 entity로 바꿔서 저장
      */
@@ -72,13 +73,13 @@ public class ChatService {
      * 유저 이메일에 따른 성별 유무 체크
      */
     @Transactional(readOnly = true)
-    public Boolean findGender(String email) {
+    public String findGender(String email) {
         Users users = usersRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("해당 이메일의 정보가 없습니다. email=" + email));
         if (users.getGender() == null) {
-            return false;
+            return "failed";
         } else {
-            return true;
+            return "success";
         }
     }
 
@@ -94,6 +95,13 @@ public class ChatService {
         // Dto에서 정보를 가져와서 업데이트시킴
         String name = signUpRequestDto.getName();
         Gender gender = signUpRequestDto.getGender();
+        users.signUp(name, gender);
+    }
+
+    @Transactional
+    public void upuup(String email, String name, Gender gender) {
+        Users users = usersRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("해당 이메일의 정보가 없습니다. email=" + email));
         users.signUp(name, gender);
     }
 }

@@ -2,6 +2,7 @@ package com.example.cinderella.service;
 
 import com.example.cinderella.domain.chat.Chat;
 import com.example.cinderella.domain.chat.ChatRepository;
+import com.example.cinderella.domain.user.Gender;
 import com.example.cinderella.domain.user.Role;
 import com.example.cinderella.web.dto.UsersResponseDto;
 import com.example.cinderella.domain.user.Users;
@@ -27,6 +28,9 @@ public class ChatroomService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * User entity에 현재 들어가있는 방 id를 갱신
+     */
     @Transactional
     public void updateChatid(String email, Long chatid) {
         Users users = usersRepository.findByEmail(email)
@@ -34,6 +38,9 @@ public class ChatroomService {
         users.updateChatid(chatid);
     }
 
+    /**
+     * 택시팟에 들어있는 유저 수를 업데이트
+     */
     @Transactional
     public void updateNumofpeople(Long chatid) {
         Chat chat = chatRepository.findById(chatid)
@@ -42,13 +49,16 @@ public class ChatroomService {
     }
 
     /**
-     * chat에 dest 추가 : update 할 예정
+     * chat과 user에 현재 dest를 업데이트
      */
-//    @Transactional
-//    public void updateDest(Long chatid, String dest) {
-//        Chat chat = chatRepository.findById(chatid)
-//                .orElseThrow(() -> new IllegalArgumentException("해당 id의 정보가 없습니다. chatid=" + chatid));
-//        chat.updateDest(dest);
-//    }
+    @Transactional
+    public void updateDest(String email, Long chatid, String dest) {
+        Chat chat = chatRepository.findById(chatid)
+                .orElseThrow(() -> new IllegalArgumentException("해당 id의 정보가 없습니다. chatid=" + chatid));
+        chat.updateDest(dest);
 
+        Users users = usersRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("해당 이메일의 정보가 없습니다. email=" + email));
+        users.updateDest(dest);
+    }
 }

@@ -3,13 +3,16 @@ package com.example.cinderella.web.dto;
 import com.example.cinderella.domain.chat.Chat;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 public class ChatResponseDto {
 
     private Long id;
     private String host;
     private String start;
-    private String dest;
+    //    private String dest;
+    private List<String> dest;
     private String time;
     private int num_of_people;
 
