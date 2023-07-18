@@ -6,6 +6,7 @@ import com.example.cinderella.web.dto.ChatSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -24,6 +25,8 @@ public class ChatController {
      */
     @PostMapping("/chatroom")
     public void createChat(@RequestBody ChatSaveRequestDto requestDto){
+        List<String> destList = new ArrayList<>();
+        destList.add(requestDto.getDest());
         chatService.saveChat(requestDto);
     }
 }
