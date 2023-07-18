@@ -97,12 +97,5 @@ public class ChatService {
         Gender gender = signUpRequestDto.getGender();
         users.signUp(name, gender);
     }
-
-    @Transactional
-    public void upuup(String email, String name, Gender gender) {
-        Users users = usersRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("해당 이메일의 정보가 없습니다. email=" + email));
-        users.signUp(name, gender);
-    }
 }
 
