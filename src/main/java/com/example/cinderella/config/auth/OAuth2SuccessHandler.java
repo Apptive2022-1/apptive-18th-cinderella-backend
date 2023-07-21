@@ -21,10 +21,10 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        // 소셜 로그인된 사용자 정보를 불러옴
+        // 소셜 로그인된 사용자 정보를 불러와서 회원가입 유무를 확인하는 코드 -> 일단 새로운 api에서 확인하는걸로 대체중
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-        System.out.println("SuccessHandler : oAuth2User = " + oAuth2User);
         String email = oAuth2User.getAttribute("email");
+        System.out.println("SuccessHandler : oAuth2User = " + oAuth2User);
         response.sendRedirect("/check");
     }
 }
