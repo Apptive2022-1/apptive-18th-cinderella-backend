@@ -16,8 +16,9 @@ public class ChatSaveRequestDto {
     private int num_of_people;
     private List<String> destList = new ArrayList<>();
     private String openChatLink;
+    private String chatName;
 
-    public ChatSaveRequestDto(String host, String start, String dest, List destList, int time, String openChatLink) {
+    public ChatSaveRequestDto(String host, String start, String dest, int time, String openChatLink, String chatName) {
         this.host = host;
         this.start = start;
         this.dest = dest;
@@ -25,6 +26,7 @@ public class ChatSaveRequestDto {
         this.time = time;
         this.num_of_people = 1;
         this.openChatLink = openChatLink;
+        this.chatName = chatName;
     }
 
     /**
@@ -38,6 +40,7 @@ public class ChatSaveRequestDto {
                 .dest(destList)
                 .num_of_people(num_of_people)
                 .openChatLink(openChatLink)
+                .chatName(chatName)
                 .build();
     }
 }

@@ -15,6 +15,8 @@ public class ChatResponseDto {
     private List<String> dest;
     private String time;
     private int num_of_people;
+    private String openChatLink;
+    private String chatName;
 
 
     public ChatResponseDto(Chat entity) {
@@ -24,5 +26,7 @@ public class ChatResponseDto {
         this.dest = entity.getDest();
         this.num_of_people = entity.getNum_of_people();
         this.time = entity.getCalcTime();
+        this.openChatLink = entity.getOpenChatLink();
+        this.chatName = entity.getChatName();
     }
 }
