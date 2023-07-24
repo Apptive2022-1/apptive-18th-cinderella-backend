@@ -31,9 +31,11 @@ public class Chat extends BaseTimeEntity {
     private String calcTime;
     @Column
     private String openChatLink;
+    @Column
+    private String chatName;
 
     @Builder
-    public Chat(String host, String start, List dest, int time, int num_of_people, String calcTime, String openChatLink) {
+    public Chat(String host, String start, List dest, int time, int num_of_people, String calcTime, String openChatLink, String chatName) {
         this.host = host;
         this.start = start;
         this.dest = dest;
@@ -41,6 +43,7 @@ public class Chat extends BaseTimeEntity {
         this.num_of_people = num_of_people;
         this.calcTime = calcTime;
         this.openChatLink = openChatLink;
+        this.chatName = chatName;
     }
 
     public void setStartAndTime(String changedStart ,String calcTime) {
@@ -48,7 +51,10 @@ public class Chat extends BaseTimeEntity {
         this.calcTime = calcTime;
     }
 
-    public void setOpenChatLink(String openChatLink){
+    /**
+     * 오픈챗 링크 변경
+     */
+    public void changeOpenChatLink(String openChatLink){
         this.openChatLink = openChatLink;
     }
 
@@ -56,9 +62,6 @@ public class Chat extends BaseTimeEntity {
         this.num_of_people++;
     }
 
-    /**
-     * dest추가기능 : 업데이트 예정
-     */
     public void updateDest(String destination) {
         this.dest.add(destination);
     }
