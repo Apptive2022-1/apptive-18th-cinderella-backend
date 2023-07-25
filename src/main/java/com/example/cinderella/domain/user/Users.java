@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Getter
 @NoArgsConstructor
@@ -35,13 +36,22 @@ public class Users extends BaseTimeEntity {
     @Column
     private String dest;
 
+    // 차단목록
+    @ElementCollection
+    @Column
+    private Set<String> blockList = new HashSet<>();
+
+
+
+
     @Builder
-    public Users(String name, String email, Role role, Gender gender, String dest) {
+    public Users(String name, String email, Role role, Gender gender, String dest, HashSet<String> blockList) {
         this.name = name;
         this.email = email;
         this.role = role;
         this.gender = gender;
         this.dest = dest;
+        this.blockList = blockList;
     }
 
     public Users update(String name) {
@@ -66,5 +76,17 @@ public class Users extends BaseTimeEntity {
     public void signUp(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
+    }
+
+
+    /**
+     * 블랙리스트에 추가 및 제거
+     */
+    public void addBlockList(String email) {
+        this.blockList.add(email);
+    }
+
+    public void removeBlockList(String email) {
+        this.blockList.remove(email);
     }
 }

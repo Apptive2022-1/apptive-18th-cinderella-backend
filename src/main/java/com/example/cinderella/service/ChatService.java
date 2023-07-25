@@ -62,7 +62,7 @@ public class ChatService {
 
 
     /**
-     * 방 생성 : host,start,dest,time을 넘겨받아 entity로 바꿔서 저장
+     * 방 생성 : host,start,dest,time을 넘겨받아 entity로 바꿔서 저장, user에 chatid를 추가
      */
     @Transactional
     public void saveChat(ChatSaveRequestDto requestDto){
@@ -95,6 +95,7 @@ public class ChatService {
         // Dto에서 정보를 가져와서 업데이트시킴
         String name = signUpRequestDto.getName();
         Gender gender = signUpRequestDto.getGender();
+        System.out.println("gender = " + gender);
         users.signUp(name, gender);
     }
 }
