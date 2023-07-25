@@ -40,21 +40,19 @@ public class AuthController {
     @GetMapping("/check")
     public String check(Authentication authentication,
                         HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        boolean isNew = session.isNew();
-        System.out.println("This session is NEW : "+ isNew);
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getAttribute("email");
         String state = chatService.findGender(email);
-        Cookie sessionCookie = Arrays.stream(request.getCookies())
-                .filter(cookie -> cookie.getName().equals("SESSION"))
-                .findFirst()
-                .orElse(null);
-        System.out.println("sessionCookie = " + sessionCookie);
-        String cookieValue = sessionCookie.getValue();
-        System.out.println("cookieValue = " + cookieValue);
-        System.out.println("HttpSession.getId() = " + session.getId());
-
+//        HttpSession session = request.getSession();
+//        Cookie sessionCookie = Arrays.stream(request.getCookies())
+//                .filter(cookie -> cookie.getName().equals("SESSION"))
+//                .findFirst()
+//                .orElse(null);
+//        System.out.println("sessionCookie = " + sessionCookie);
+//        String cookieValue = sessionCookie.getValue();
+//        System.out.println("cookieValue = " + cookieValue);
+//        System.out.println("HttpSession.getId() = " + session.getId());
+        System.out.println("회원가입 상태 : " + state);
         return state;
     }
 //    public SignedUpCheckDto check(HttpSession session,
@@ -77,7 +75,6 @@ public class AuthController {
     public void signUp(@RequestBody SignUpRequestDto signUpRequestDto,
                        Authentication authentication) {
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-        System.out.println("oAuth2User = " + oAuth2User);
         String email = oAuth2User.getAttribute("email");
         chatService.signUp(email, signUpRequestDto);
     }
