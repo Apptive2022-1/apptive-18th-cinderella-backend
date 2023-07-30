@@ -9,6 +9,7 @@ import com.example.cinderella.web.dto.ChatResponseDto;
 import com.example.cinderella.web.dto.ChatSaveRequestDto;
 import com.example.cinderella.web.dto.SignUpRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +23,11 @@ import java.util.stream.Collectors;
 public class ChatService {
     private final ChatRepository chatRepository;
     private final UsersRepository usersRepository;
+    private final UsersService usersService;
 
+    /**
+     * 방 리스트 반환
+     */
     @Transactional(readOnly = true)
     public List<ChatResponseDto> findAllByStart(String start) {
         List<Chat> chatlist = chatRepository.findAllByStart(start);
@@ -65,7 +70,12 @@ public class ChatService {
      * 방 생성 : host,start,dest,time을 넘겨받아 entity로 바꿔서 저장, user에 chatid를 추가
      */
     @Transactional
-    public void saveChat(ChatSaveRequestDto requestDto){
+    public void saveChat(ChatSaveRequestDto requestDto, Authentication authentication){
+        String email = usersService.findEmail(authentication);
+        Users users = usersRepository.findByEmail(email)
+                        .orElseThrow(()->new IllegalArgumentException("해당 이메일의 정보가 없습니다. email=" + email));
+        users.joinGroup();
+        usersRepository.save(users);
         chatRepository.save(requestDto.toEntity());
     }
 

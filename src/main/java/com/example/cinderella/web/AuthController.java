@@ -44,15 +44,15 @@ public class AuthController {
         String email = oAuth2User.getAttribute("email");
         String state = chatService.findGender(email);
 //        HttpSession session = request.getSession();
-//        Cookie sessionCookie = Arrays.stream(request.getCookies())
-//                .filter(cookie -> cookie.getName().equals("SESSION"))
-//                .findFirst()
-//                .orElse(null);
+        Cookie sessionCookie = Arrays.stream(request.getCookies())
+                .filter(cookie -> cookie.getName().equals("SESSION"))
+                .findFirst()
+                .orElse(null);
 //        System.out.println("sessionCookie = " + sessionCookie);
-//        String cookieValue = sessionCookie.getValue();
-//        System.out.println("cookieValue = " + cookieValue);
+        String cookieValue = sessionCookie.getValue();
+        System.out.println("cookieValue = " + cookieValue);
 //        System.out.println("HttpSession.getId() = " + session.getId());
-        System.out.println("회원가입 상태 : " + state);
+//        System.out.println("회원가입 상태 : " + state);
         return state;
     }
 //    public SignedUpCheckDto check(HttpSession session,

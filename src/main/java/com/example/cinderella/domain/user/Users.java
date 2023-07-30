@@ -41,7 +41,9 @@ public class Users extends BaseTimeEntity {
     @Column
     private Set<String> blockList = new HashSet<>();
 
-
+    // 현재 택시팟에 참여중인지 유무
+    @Column
+    private Boolean participating = false;
 
 
     @Builder
@@ -62,6 +64,14 @@ public class Users extends BaseTimeEntity {
     public Users updateChatid(Long chatid) {
         this.chatid = chatid;
         return this;
+    }
+
+    public void joinGroup(){
+        this.participating = true;
+    }
+
+    public void leaveGroup(){
+        this.participating = false;
     }
 
     public void updateDest(String dest) {
