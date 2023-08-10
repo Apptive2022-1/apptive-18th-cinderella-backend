@@ -32,6 +32,7 @@ public class ChatSaveRequestDto {
     /**
      * 각 변수를 저장한 entity를 return
      */
+    @Builder
     public Chat toEntity() {
         return Chat.builder()
                 .host(host)
